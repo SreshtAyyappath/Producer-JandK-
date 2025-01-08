@@ -1,21 +1,111 @@
 package com.karix.polling.source;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "SourceTable1")
 public class SourceEntity {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "TEMPLATE_ID")
-    private String templateID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false)
+    private BigDecimal id;
 
-    @Column(name = "MOBILE_NO")
+    @Column(name = "ENTRY_TIME")
+    private Timestamp entryTime;
+
+    @Column(name = "PROCESS_TIME")
+    private Timestamp processTime;
+
+    @Column(name = "MOBILE_NO", length = 15)
     private String mobileNo;
+
+    @Column(name = "TEMPLATE_ID", nullable = false)
+    private BigDecimal templateID;
 
     @Column(name = "STATUS")
     private Integer status;
+
+    @Column(name = "ALERT_TYPE")
+    private Integer alertType;
+
+    @Column(name = "PRIORITY")
+    private Integer priority;
+
+    @Column(name = "EXPIRY_DATE")
+    private Timestamp expiryDate;
+
+    @Column(name = "PARAMETER1", length = 50)
+    private String parameter1;
+
+    @Column(name = "PARAMETER2", length = 50)
+    private String parameter2;
+
+    @Column(name = "PARAMETER3", length = 50)
+    private String parameter3;
+
+    @Column(name = "PARAMETER4", length = 50)
+    private String parameter4;
+
+    @Column(name = "PARAMETER5", length = 50)
+    private String parameter5;
+
+    @Column(name = "PARAMETER6", length = 50)
+    private String parameter6;
+
+    @Column(name = "PARAMETER7", length = 50)
+    private String parameter7;
+
+    @Column(name = "PARAMETER8", length = 50)
+    private String parameter8;
+
+    @Column(name = "PARAMETER9", length = 50)
+    private String parameter9;
+
+    @Column(name = "PARAMETER10", length = 50)
+    private String parameter10;
+
+    @Column(name = "UNIQUE_ID", nullable = false, length = 32)
+    private String uniqueId;
+
+    @Column(name = "TRAN_DATE")
+    @Temporal(TemporalType.DATE)
+    private Date transactionDate;
+
+    @Column(name = "TRAN_ID", length = 9)
+    private String transactionId;
+
+    @Column(name = "PART_TRAN_SRL_NUM", length = 4)
+    private String partTransactionSerialNumber;
+
+    // Getters and Setters
+
+    public BigDecimal getId() {
+        return id;
+    }
+
+    public void setId(BigDecimal id) {
+        this.id = id;
+    }
+
+    public Timestamp getEntryTime() {
+        return entryTime;
+    }
+
+    public void setEntryTime(Timestamp entryTime) {
+        this.entryTime = entryTime;
+    }
+
+    public Timestamp getProcessTime() {
+        return processTime;
+    }
+
+    public void setProcessTime(Timestamp processTime) {
+        this.processTime = processTime;
+    }
 
     public String getMobileNo() {
         return mobileNo;
@@ -25,12 +115,44 @@ public class SourceEntity {
         this.mobileNo = mobileNo;
     }
 
+    public BigDecimal getTemplateID() {
+        return templateID;
+    }
+
+    public void setTemplateID(BigDecimal templateID) {
+        this.templateID = templateID;
+    }
+
     public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getAlertType() {
+        return alertType;
+    }
+
+    public void setAlertType(Integer alertType) {
+        this.alertType = alertType;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+    public Timestamp getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Timestamp expiryDate) {
+        this.expiryDate = expiryDate;
     }
 
     public String getParameter1() {
@@ -73,12 +195,20 @@ public class SourceEntity {
         this.parameter5 = parameter5;
     }
 
-    public String getParameter10() {
-        return parameter10;
+    public String getParameter6() {
+        return parameter6;
     }
 
-    public void setParameter10(String parameter10) {
-        this.parameter10 = parameter10;
+    public void setParameter6(String parameter6) {
+        this.parameter6 = parameter6;
+    }
+
+    public String getParameter7() {
+        return parameter7;
+    }
+
+    public void setParameter7(String parameter7) {
+        this.parameter7 = parameter7;
     }
 
     public String getParameter8() {
@@ -97,58 +227,43 @@ public class SourceEntity {
         this.parameter9 = parameter9;
     }
 
-    public String getParameter6() {
-        return parameter6;
+    public String getParameter10() {
+        return parameter10;
     }
 
-    public void setParameter6(String parameter6) {
-        this.parameter6 = parameter6;
+    public void setParameter10(String parameter10) {
+        this.parameter10 = parameter10;
     }
 
-    public String getParameter7() {
-        return parameter7;
+    public String getUniqueId() {
+        return uniqueId;
     }
 
-    public void setParameter7(String parameter7) {
-        this.parameter7 = parameter7;
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
     }
 
-    public String getTemplateID() {
-        return templateID;
+    public Date getTransactionDate() {
+        return transactionDate;
     }
 
-    public void setTemplateID(String templateID) {
-        this.templateID = templateID;
+    public void setTransactionDate(Date transactionDate) {
+        this.transactionDate = transactionDate;
     }
 
-    @Column(name = "PARAMETER1")
-    private String parameter1;
+    public String getTransactionId() {
+        return transactionId;
+    }
 
-    @Column(name = "PARAMETER2")
-    private String parameter2;
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
 
-    @Column(name = "PARAMETER3")
-    private String parameter3;
+    public String getPartTransactionSerialNumber() {
+        return partTransactionSerialNumber;
+    }
 
-    @Column(name = "PARAMETER4")
-    private String parameter4;
-
-    @Column(name = "PARAMETER5")
-    private String parameter5;
-
-    @Column(name = "PARAMETER6")
-    private String parameter6;
-
-    @Column(name = "PARAMETER7")
-    private String parameter7;
-
-    @Column(name = "PARAMETER8")
-    private String parameter8;
-
-    @Column(name = "PARAMETER9")
-    private String parameter9;
-
-    @Column(name = "PARAMETER10")
-    private String parameter10;
-
+    public void setPartTransactionSerialNumber(String partTransactionSerialNumber) {
+        this.partTransactionSerialNumber = partTransactionSerialNumber;
+    }
 }

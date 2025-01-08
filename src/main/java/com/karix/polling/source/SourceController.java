@@ -6,6 +6,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -23,8 +24,8 @@ public class SourceController {
         sourceEntityList = sourceService.getEntitiesWithStatusZero();
         System.out.println(sourceEntityList.toString());
         for(int i = 0; i < sourceEntityList.size(); i++){
-            String templateId = sourceEntityList.get(i).getTemplateID();
-            System.out.println(sourceService.getTemplateTxt(templateId));
+            BigDecimal templateId = sourceEntityList.get(i).getTemplateID();
+            System.out.println(sourceService.getTemplateTxt(String.valueOf(templateId)));
         }
         return;
     }
