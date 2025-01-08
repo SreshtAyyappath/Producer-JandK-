@@ -25,7 +25,13 @@ public class SourceController {
         System.out.println(sourceEntityList.toString());
         for(int i = 0; i < sourceEntityList.size(); i++){
             BigDecimal templateId = sourceEntityList.get(i).getTemplateID();
-            System.out.println(sourceService.getTemplateTxt(templateId));
+            String msg=sourceService.getTemplateTxt(templateId);
+            System.out.println(msg);
+            if(msg != null) {
+                String finalMessage=MessageCreator.createMessage(msg, sourceEntityList.get(i));
+                String requestBody=JsonPayloadConverter.convertToJsonPayload(sourceEntityList.get(i),finalMessage);
+                System.out.println(requestBody);
+            }
         }
         return;
     }
