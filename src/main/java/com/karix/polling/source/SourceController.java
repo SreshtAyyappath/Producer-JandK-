@@ -25,7 +25,7 @@ public class SourceController {
         System.out.println(sourceEntityList.toString());
         for(int i = 0; i < sourceEntityList.size(); i++){
             BigDecimal templateId = sourceEntityList.get(i).getTemplateID();
-            System.out.println(sourceService.getTemplateTxt(String.valueOf(templateId)));
+            System.out.println(sourceService.getTemplateTxt(templateId));
         }
         return;
     }

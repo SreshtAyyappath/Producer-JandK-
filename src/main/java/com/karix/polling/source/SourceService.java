@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -25,13 +26,13 @@ public class SourceService {
         return sourceRepository.findByStatus(0);
     }
 
-    public String getTemplateTxt(String templateId){
+    public String getTemplateTxt(BigDecimal templateId){
         System.out.println("Searching templateId: " + templateId);
         String templateTxt = cacheManager.getFromCache(templateId);
 
         if(templateTxt == null){
             System.out.println("not in cache.");
-            TemplateEntity templateEntity = templateRepository.findByTemplateId(templateId);
+            TemplateEntity templateEntity = templateRepository.findById(templateId);
             if(templateEntity == null){
                 log.error("no value in template table");
                 return null;
