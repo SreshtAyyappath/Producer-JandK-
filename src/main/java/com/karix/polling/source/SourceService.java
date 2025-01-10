@@ -22,8 +22,8 @@ public class SourceService {
     @Autowired
     private CacheManager cacheManager;
 
-    public List<SourceEntity> getEntitiesWithStatusZero() {
-        return sourceRepository.findByStatus(0);
+    public List<SourceEntity> getEntitiesWithStatusZero(String tableName, Integer priority, Integer limit) {
+        return sourceRepository.fetchDataFromTable(tableName, priority, limit);
     }
 
     public String getTemplateTxt(BigDecimal templateId){
@@ -31,20 +31,28 @@ public class SourceService {
         String templateTxt = cacheManager.getFromCache(templateId);
 
         if(templateTxt == null){
-            System.out.println("not in cache.");
-            TemplateEntity templateEntity = templateRepository.findById(templateId);
-            if(templateEntity == null){
-                log.error("no value in template table");
-                return null;
-            }
-            templateTxt = templateEntity.getTemplateTxt();
+            log.info("Finding TemplateTxt in Template DB(Does not exist in Cache)");
+            try{
+                TemplateEntity templateEntity = templateRepository.findById(templateId);
 
-            if(templateTxt == null){
-                log.error("templateTxt not found");
-            }else{
-                cacheManager.putInCache(templateId, templateTxt);
+                if(templateEntity == null){
+                    log.info("TemplateEntity for the TemplateId not found in DB");
+                    return null;
+                }
+                templateTxt = templateEntity.getTemplateTxt();
+
+                if(templateTxt == null){
+                    log.info("TemplateTxt not present for the row");
+                }else{
+                    cacheManager.putInCache(templateId, templateTxt);
+                }
+            }catch(Exception e){
+                log.error(String.valueOf(e));
             }
+
+
         }
+
         return templateTxt;
     }
 

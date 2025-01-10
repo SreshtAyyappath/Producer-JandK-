@@ -19,9 +19,9 @@ public class SourceController {
     private List<SourceEntity> sourceEntityList;
 
     //@GetMapping("/entities/status-zero")
-    @Scheduled(fixedRate = 5000)
+    //Scheduled(fixedRate = 5000)
     public void getEntitiesWithStatusZero(){
-        sourceEntityList = sourceService.getEntitiesWithStatusZero();
+        sourceEntityList = sourceService.getEntitiesWithStatusZero("SOURCE_TABLE2", 1, 10);
         System.out.println(sourceEntityList.toString());
         for(int i = 0; i < sourceEntityList.size(); i++){
             BigDecimal templateId = sourceEntityList.get(i).getTemplateID();

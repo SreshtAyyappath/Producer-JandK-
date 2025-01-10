@@ -28,8 +28,64 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
+		<azure_devops_url>https://pkgs.dev.azure.com/karixrepo</azure_devops_url>
+		<azure_devops_repository>${azure_devops_url}/ArtifactFeeds/_packaging</azure_devops_repository>
+		<karix_common_lib>
+			${azure_devops_repository}/karix-common-libraries/maven/v1</karix_common_lib>
+		<maven_mirror>${azure_devops_repository}/maven-mirror/maven/v1</maven_mirror>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>17</java.version>
+		<maven-source-plugin-version>3.8.1</maven-source-plugin-version>
+		<maven-war-plugin-version>3.2.3</maven-war-plugin-version>
+		<mysql-connector-java-version>8.0.33</mysql-connector-java-version>
+		<jedis-version>4.4.3</jedis-version>
+		<json-version>20230618</json-version>
+		<log4j-version>2.20.0</log4j-version>
+		<jakarta.servlet-api-version>6.0.0</jakarta.servlet-api-version>
+		<commons-collections-version>4.4</commons-collections-version>
+		<commons-dbcp2-version>2.9.0</commons-dbcp2-version>
+		<commons-pool2-version>2.11.1</commons-pool2-version>
+		<commons-lang-version>3.12.0</commons-lang-version>
+		<commons-configuration-version>2.9.0</commons-configuration-version>
+		<mongodb-driver-sync-version>5.2.1</mongodb-driver-sync-version>
+		<commons-congifuration-version>2.9.0</commons-congifuration-version>
+		<karix-constants-version>5.0.2-SNAPSHOT</karix-constants-version>
+		<databaseutil-version>5.0.0-SNAPSHOT</databaseutil-version>
+		<redisprovider-version>5.0.4-SNAPSHOT</redisprovider-version>
+		<loadconfigparams-version>5.0.1-SNAPSHOT</loadconfigparams-version>
+		<commonutil-version>5.0.1-SNAPSHOT</commonutil-version>
+		<propertyconfigloader-version>5.0.1-SNAPSHOT</propertyconfigloader-version>
+		<constants-version>5.0.1-SNAPSHOT</constants-version>
+		<rmqutil-version>5.0.0-SNAPSHOT</rmqutil-version>
+		<loadaccountcustomfeatures-version>5.0.1-SNAPSHOT</loadaccountcustomfeatures-version>
+		<redisconnectionpool-version>5.0.0-SNAPSHOT</redisconnectionpool-version>
+		<dlrpreroutingutils-version>5.0.9-SNAPSHOT</dlrpreroutingutils-version>
+		<redisutils-version>5.0.0-SNAPSHOT</redisutils-version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>maven-mirror</id>
+			<url>${maven_mirror}</url>
+		</repository>
+		<repository>
+			<id>karix-common-libraries</id>
+			<url>${karix_common_lib}</url>
+		</repository>
+	</repositories>
+	<distributionManagement>
+		<repository>
+			<id>karix-common-libraries</id>
+			<url>${karix_common_lib}</url>
+		</repository>
+		<snapshotRepository>
+			<id>karix-common-libraries</id>
+			<url>${karix_common_lib}</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<dependencies>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
